@@ -1,0 +1,7 @@
+/* view color palette by opening color-palette.html in browser */
+:root {
+  --dark-grey: #4f5b67;
+  --light-grey: #c7d0d7;
+  --pink: #fae2e0;
+  --salmon: #fac5a6;
+}
