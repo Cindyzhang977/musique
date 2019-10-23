@@ -4,7 +4,6 @@ import './views/index.css';
 
 class Create extends React.Component {
   render() {
-    console.log("render create");
     return (
       <div className='create transition-item'>
           CREATE QUEUE!
