@@ -1,12 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 import './views/index.css';
 
 class Create extends React.Component {
   render() {
+    console.log("render create");
     return (
-      <div className='create'>
+      <div className='create transition-item'>
           CREATE QUEUE!
       </div>
     )

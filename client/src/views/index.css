@@ -1,22 +1,70 @@
 @import 'config.css';
 
+/* TRANSITIONS */
+.transition-item {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    transition: transform 0.5s, opacity 0.5s;
+}
+
+.create.transition-appear,
+.join.transition-appear {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+}
+
+.create.transition-appear.transition-appear-active,
+.join.transition-appear.transition-appear-active {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+
+.create.transition-leave,
+.join.transition-leave {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+
+.create.transition-leave.transition-leave-active,
+.join.transition-leave.transition-leave-active {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+}
+
+.home.transition-appear {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+}
+
+.home.transition-appear.transition-appear-active {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+
+.home.transition-leave {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+
+.home.transition-leave.transition-leave-active {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+}
+
+
 /* Home Page */
-.fade-enter {
-    opacity: 0.01;
+.home {
+  background-color: var(--light-grey);
+  height: 100vh;
 }
 
-.fade-enter.fade-enter-active {
-    opacity: 1;
-    transition: opacity 300ms ease-in;
-}
-
-.fade-exit {
-    opacity: 1;
-}
-
-.fade-exit.fade-exit-active {
-    opacity: 0.01;
-    transition: opacity 300ms ease-in;
+.button {
+  width: 70px;
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+  border: 2px solid var(--salmon);
 }
 
 /* Create Queue */
@@ -26,7 +74,7 @@
 }
 
 /* Join Queue */
-.create {
+.join {
   height: 100vh;
   background-color: var(--pink);
 }

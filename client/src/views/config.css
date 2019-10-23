@@ -8,6 +8,7 @@
 
   /* other colors */
   --off-black: #333333;
+  --off-white: #fcfbf7;
 }
 
 
@@ -21,6 +22,7 @@ html, body {
     font-size: 18px;
     font-family: sans-serif;
     color: var(--off-black);
+    background-color: var(--off-white);
 }
 
 a {
@@ -30,4 +32,8 @@ a {
 
 button {
   background-color: none;
+}
+
+.button:hover {
+  cursor: pointer;
 }
