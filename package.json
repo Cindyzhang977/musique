@@ -1,0 +1,24 @@
+{
+  "name": "musique",
+  "version": "1.0.0",
+  "description": "commands to run for client side: - npm install - npm install react-router-page-transition --save",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cindyzhang977/musique.git"
+  },
+  "author": "Cindy Zhang, Wallace Lim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Cindyzhang977/musique/issues"
+  },
+  "homepage": "https://github.com/Cindyzhang977/musique#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.7.7"
+  }
+}

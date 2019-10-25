@@ -1,0 +1,9 @@
+Idea Implementation
+- Login / Multiple group parties
+- Machine learning to predict (auto-fill) queue songs
+- Wave music diagram for aesthetics
+- Admin group manager dashboard vs joiner
+
+Notes
+- npm install express mongoose body-parser
+- npm install --save -g nodemon (node.js server)
