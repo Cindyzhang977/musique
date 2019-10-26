@@ -9,14 +9,22 @@ router.route('/').get((req, res) => {
 		.catch(err => res.status(400).json('Error ' + err));
 });
 
-// Queue GET Route
-router.route('/latestID/').get((req, res) => {
+// Queue GET Route partyCode
+router.route('/latestCode/').get((req, res) => {
 	Queue.find()
 		.sort({time: -1})
 		.limit(1)
-		.then(queue => res.json(queue[0].id))
+		.then(queue => res.json(queue[0].partyCode))
 		.catch(err => res.status(400).json('Error ' + err));
 });
+
+// Queue GET Route partyCode retrivial
+router.route('/getParty/').get((req, res) => {
+	Queue.find({partyCode : req.body.partyCode})
+		.then(queue => res.json(queue))
+		.catch(err => res.status(400).json('Error ' + err));
+});
+
 
 // Queue GET Route by ID
 router.route('/:id').get((req, res) => {
@@ -25,7 +33,7 @@ router.route('/:id').get((req, res) => {
 		.catch(err => res.status(400).json('Error ' + err));
 });
 
-// Queue ADD Route
+// Queue ADD Route > return partyCode string
 router.route('/add').post((req, res) => {
 	const newQueue = new Queue({
 		'partyCode': req.body.partyCode,
@@ -33,7 +41,7 @@ router.route('/add').post((req, res) => {
 	});
 
 	newQueue.save()
-		.then(queue => res.json(queue._id))
+		.then(queue => res.json(queue.partyCode))
 		.catch(err => res.status(400).json('Error ' + err));
 });
 
