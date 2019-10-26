@@ -33,7 +33,7 @@ router.route('/add').post((req, res) => {
 	});
 
 	newQueue.save()
-		.then(() => res.json('Queue created'))
+		.then(queue => res.json(queue._id))
 		.catch(err => res.status(400).json('Error ' + err));
 });
 
