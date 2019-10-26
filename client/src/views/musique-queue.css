@@ -1,0 +1,78 @@
+@import 'config.css';
+
+:root {
+  --radius: 5px;
+}
+
+::placeholder {
+  color: var(--grey);
+}
+
+.queue-main-page {
+  text-align: center;
+  margin: 5% 20% 5% 20%;
+}
+
+/* plus MUSIC */
+
+.add-music {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  margin-bottom: 50px;
+  /* border: 1px solid var(--light-grey);
+  padding: 10px 25px;
+  border-radius: 4px;
+  background-color: #fcfcfc;
+  box-shadow: 0 1px 3px 0 var(--grey); */
+}
+
+.add-music > input {
+  flex: 3;
+  border: 3px solid var(--light-grey);
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  background-color: inherit;
+  padding: 7px;
+  margin-right: 50px;
+}
+
+.plus-button {
+  flex: 1;
+  background-color: var(--salmon);
+  padding: 5px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  max-width: 120px;
+}
+
+.plus-button:hover {
+  cursor: pointer;
+  background-color: var(--orange);
+}
+
+/* QUEUE */
+
+.queue {
+  border: 1px solid var(--pink);
+  padding: 10px 25px;
+  border-radius: 4px;
+  background-color: #fcfcfc;
+  box-shadow: 0 1px 3px 0 var(--grey);
+  margin: 5% auto;
+  height: 50vh;
+}
+
+/* CURRENT SONG PLAYING */
+.curr-song {
+  border: 1px solid var(--pink);
+  padding: 10px 25px;
+  border-radius: 2px;
+  background-color: #fcfcfc;
+  box-shadow: 0 1px 4px 0 var(--grey);
+  margin: 5% auto;
+}

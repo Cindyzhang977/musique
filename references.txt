@@ -5,3 +5,6 @@ Page Transitions: https://www.npmjs.com/package/react-router-page-transition
 React Transitions Documentation:
 https://reactcommunity.org/react-transition-group/
 https://reactjs.org/docs/animation.html
+
+CSS Box Shadow:
+https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow

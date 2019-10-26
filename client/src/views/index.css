@@ -132,7 +132,7 @@ h2 {
   color: var(--orange);
 }
 
-input[type=text] {
+.code-input {
   width: 50%;
   height: 30px;
   position: relative;
@@ -148,6 +148,7 @@ input[type=text] {
   position: relative;
   right: 90vh;
   margin-bottom: 15px;
+  font-size: 28px;
 }
 
 .back:hover {

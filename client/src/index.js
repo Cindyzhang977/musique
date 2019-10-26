@@ -8,6 +8,7 @@ import './views/index.css';
 
 import Create from './create-queue.js';
 import Join from './join-queue.js';
+import MusiqueQueue from './musique-queue.js';
 // import Routes from './routes.js';
 
 class Home extends React.Component {
@@ -66,6 +67,7 @@ class App extends React.Component {
                       <Route exact path='/' component={Home} />
                       <Route path='/create-queue' component={Create} />
                       <Route path='/join-queue' component={Join} />
+                      <Route path='/musique-queue' component={MusiqueQueue} />
                   </Switch>
               </PageTransition>
             )}/>
