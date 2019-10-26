@@ -13,6 +13,9 @@ const queueSchema = new Schema({
 	 queue: {
 	 	type: [String]
 	 },
+	 size: {
+	 	type: Number,
+	 },
 	 time: {
 	 	type: Date,
 	 	default: Date.now
