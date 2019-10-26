@@ -19,9 +19,9 @@ router.route('/latestCode/').get((req, res) => {
 });
 
 // Queue GET Route partyCode retrivial
-router.route('/getParty/').get((req, res) => {
+router.route('/getParty/').post((req, res) => {
 	Queue.find({partyCode : req.body.partyCode})
-		.then(queue => res.json(queue))
+		.then(queue => res.send(res.json(queue)))
 		.catch(err => res.status(400).json('Error ' + err));
 });
 

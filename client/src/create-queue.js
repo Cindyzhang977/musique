@@ -57,7 +57,6 @@ class Create extends React.Component {
 
   render() {
     if (this.state.queueCreated) {
-      console.log(this.state.partyCode);
       return <Redirect to={{
             pathname: '/musique-queue',
             state: { partyCode: this.state.partyCode }
