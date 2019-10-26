@@ -176,3 +176,8 @@ h2 {
   left:72%;
   top: 55vh;
 }
+
+#invalid-code {
+  display: none;
+  color: red;
+}

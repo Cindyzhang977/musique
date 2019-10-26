@@ -18,6 +18,12 @@ class MusiqueQueue extends React.Component {
     }
   }
 
+  goHome() {
+      this.props.history.push({
+        pathname: '/'
+      });
+  }
+
   componentDidMount() {
     this.setState({partyCode: this.props.location.state.partyCode});
   }
@@ -42,7 +48,7 @@ class MusiqueQueue extends React.Component {
           <div className='queue-nav'>
               <h2>musique</h2>
               <div>PartyCode: {this.state.partyCode}</div>
-              <div className='button'>Log out</div>
+              <div className='button' onClick={this.goHome.bind(this)}>Log out</div>
           </div>
           <div className='queue-main-page'>
               <div className='curr-song'> Current Song </div>
