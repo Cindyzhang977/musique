@@ -31,6 +31,14 @@ router.route('/getParty/').post((req, res) => {
 		.catch(err => res.status(400).json('Error ' + err));
 });
 
+// party GET > return number of users logged in
+// router.route('/getSize/:id').get((req, res) => {
+// 	console.log(req.params.id);
+// 	Party.find({partyCode: req.params.id})
+// 		.then(party => res.json(party))
+// 		.catch(err => res.status(400).json('Error ' + err));
+// });
+
 
 // Party GET Route by ID
 router.route('/:id').get((req, res) => {
@@ -39,7 +47,7 @@ router.route('/:id').get((req, res) => {
 		.catch(err => res.status(400).json('Error ' + err));
 });
 
-// Party ADD Route > return partyCode string (create-queue)
+// Party POST Route > return partyCode string (create-queue)
 router.route('/addParty').post((req, res) => {
 	const newParty = new Party({
 		'partyCode': req.body.partyCode,
@@ -50,6 +58,20 @@ router.route('/addParty').post((req, res) => {
 	newParty.save()
 		.then(party => res.json(party.partyCode))
 		.catch(err => res.status(400).json('Error ' + err));
+});
+
+// party POST route > add song to party's queue
+router.route('/addSong').post((req, res) => {
+	Party.find({partyCode : req.body.partyCode})
+		.then(party => {
+			if (req.body.songID !== '') {
+					party[0].queue.push(req.body.songID);
+			}
+				party[0].save()
+					.then(() => res.json(party[0]))
+					.catch(err => console.log(err));
+		})
+		.catch(err => console.log(err));
 });
 
 // Party UPDATE Route
