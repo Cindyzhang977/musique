@@ -12,9 +12,14 @@ app.use(bodyParser.json());
 const db = require('./config/key').mongoURI;
 
 // Connect to Mongo
-mongoose.connect(db, {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(db, {useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true})
 	.then(() => console.log('MongoDB Connected Successfully...'))
 	.catch(err => console.log(err));
+
+// Use Routes
+const queues = require('./routes/queue');
+
+app.use('/queue', queues)
 
 // Ensure server is running
 app.listen(port, () => {
