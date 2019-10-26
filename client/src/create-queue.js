@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 import './views/index.css';
+import MusiqueQueue from './musique-queue';
 
 class Create extends React.Component {
   /* Page that allows users to create a MusiqueQueue as the host */
@@ -14,6 +15,7 @@ class Create extends React.Component {
     this.state = {
       partyCode: '',
       queueCreated: false,
+      partyID: '',
     }
   }
 
@@ -26,7 +28,7 @@ class Create extends React.Component {
   /* creates a party that has the partyCode and an empty queue */
   createQueue() {
     // sends partyCode to backend
-    fetch('http://localhost:5000/party/addParty', { //endpoint
+    fetch('http://localhost:5000/party/addParty', { 
       method: 'POST',
       body: JSON.stringify({"partyCode": this.state.partyCode}),
       headers: {
@@ -34,21 +36,12 @@ class Create extends React.Component {
         'Content-Type': 'application/json'
       },
     })
-    .then(res => res.json())
-    .catch(err => console.log(err));
-
-    this.setState({queueCreated: true});
-
-    // get id for the party from backend
-    /*fetch('http://localhost:5000/queue/latestID', { //endpoint
-      method: 'GET',
-    })
     .then(res => res.json()
       .then(result => {
-          this.setState({partyID: result});
-          console.log(this.state.partyID);
-        }))
-    .catch(err => console.log(err));*/
+        this.setState({partyID: result, queueCreated: true});
+      }
+    ))
+    .catch(err => console.log(err));
   }
 
   onCodeChange(e) {
@@ -57,22 +50,42 @@ class Create extends React.Component {
 
   render() {
     if (this.state.queueCreated) {
-      return <Redirect to={{
-            pathname: '/musique-queue',
-            state: { partyCode: this.state.partyCode }
-        }}/>;
+      return (
+          <MusiqueQueue id={this.state.partyID} />
+      );
+    } else {
+      return (
+        <div className='create transition-item'>
+            <div className='back' onClick={this.goHome.bind(this)}>
+                <FontAwesomeIcon icon={faArrowLeft} />
+            </div>
+            <h2>Create Queue</h2>
+            <input type='text' className='code-input' placeholder='Create Join Code' onChange={this.onCodeChange.bind(this)}/>
+            <div className='button accent-button' onClick={this.createQueue}>Create!</div>
+        </div>
+      )
     }
-    return (
-      <div className='create transition-item'>
-          <div className='back' onClick={this.goHome.bind(this)}>
-              <FontAwesomeIcon icon={faArrowLeft} />
-          </div>
-          <h2>Create Queue</h2>
-          <input type='text' className='code-input' placeholder='Create Join Code' onChange={this.onCodeChange.bind(this)}/>
-          <div className='button accent-button' onClick={this.createQueue}>Create!</div>
-      </div>
-    )
   }
+
+  // render() {
+  //   if (this.state.queueCreated) {
+  //     console.log("partyID in Create Queue " + this.state.partyID);
+  //     return <Redirect to={{
+  //           pathname: '/musique-queue',
+  //           state: { partyID: this.state.partyID }
+  //       }}/>;
+  //   }
+  //   return (
+  //     <div className='create transition-item'>
+  //         <div className='back' onClick={this.goHome.bind(this)}>
+  //             <FontAwesomeIcon icon={faArrowLeft} />
+  //         </div>
+  //         <h2>Create Queue</h2>
+  //         <input type='text' className='code-input' placeholder='Create Join Code' onChange={this.onCodeChange.bind(this)}/>
+  //         <div className='button accent-button' onClick={this.createQueue}>Create!</div>
+  //     </div>
+  //   )
+  // }
 }
 
 export default Create;

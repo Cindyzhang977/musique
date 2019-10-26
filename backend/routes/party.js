@@ -42,7 +42,7 @@ router.route('/getParty/').post((req, res) => {
 
 // Party GET Route by ID
 router.route('/:id').get((req, res) => {
-	Party.findById()
+	Party.findById(req.params.id)
 		.then(party => res.json(party))
 		.catch(err => res.status(400).json('Error ' + err));
 });
@@ -56,7 +56,7 @@ router.route('/addParty').post((req, res) => {
 	});
 
 	newParty.save()
-		.then(party => res.json(party.partyCode))
+		.then(party => res.json(party._id))
 		.catch(err => res.status(400).json('Error ' + err));
 });
 

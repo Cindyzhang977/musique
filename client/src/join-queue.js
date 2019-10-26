@@ -3,6 +3,8 @@ import { Redirect } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
+import MusiqueQueue from './musique-queue';
+
 import './views/index.css';
 
 class Join extends React.Component {
@@ -12,7 +14,7 @@ class Join extends React.Component {
     this.state = {
       partyCode: '',
       joinSuccess: false,
-      size: '',
+      partyID: '',
     }
   }
 
@@ -38,9 +40,8 @@ class Join extends React.Component {
     })
     .then(res => res.json()
       .then(result => {
-          this.setState({joinSuccess: (result.partyCode === this.state.partyCode)});
-          this.setState({size: result.size});
-          console.log(result.size);
+          this.setState({joinSuccess: (result.partyCode === this.state.partyCode),
+                         partyID: result._id});
           //indicate error when code is invalid
           if (!this.state.joinSuccess) {
             document.getElementById('invalid-code').style.display = "block";
@@ -51,11 +52,12 @@ class Join extends React.Component {
 
   render() {
     if (this.state.joinSuccess) {
-      return <Redirect to={{
-            pathname: '/musique-queue',
-            state: { partyCode: this.state.partyCode,
-                     size : this.state.size}
-        }}/>;
+      return <MusiqueQueue id={this.state.partyID} />;
+      // return <Redirect to={{
+      //       pathname: '/musique-queue',
+      //       state: { partyCode: this.state.partyCode,
+      //                size : this.state.size}
+      //   }}/>;
     }
 
     return (
