@@ -11,15 +11,23 @@ class MusiqueQueue extends React.Component {
   constructor(props) {
     super(props);
     this.enqueue = this.enqueue.bind(this);
+    this.state = {
+      songAdded: '',
+    }
   }
 
   /* posts song to database */
   enqueue() {
-    // fetch('/server/signup-submit', { //endpoint
-    //   method: 'POST',
-    //   body: JSON.stringify(json),
-    // })
-    // .then(console.log(JSON.stringify(json)))
+    fetch('http://localhost:5000/queue/update/', { //endpoint
+      method: 'POST',
+      body: JSON.stringify({'songID': this.state.songAdded}),
+    })
+    .then(res => res.json())
+    .then(console.log('song queued!'));
+  }
+
+  onInputChange(e) {
+    this.setState({songAdded: e.target.value});
   }
 
   render() {
@@ -30,7 +38,7 @@ class MusiqueQueue extends React.Component {
           <Queue />
 
           <div className='add-music'>
-              <input type='text' placeholder='queue musique' />
+              <input type='text' placeholder='queue musique' onChange={this.onInputChange.bind(this)}/>
               <div className='plus-button' onClick={this.enqueue}>
                   <FontAwesomeIcon icon={faPlus} className='plus-icon'/>
               </div>
