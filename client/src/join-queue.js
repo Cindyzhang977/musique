@@ -37,15 +37,15 @@ class Join extends React.Component {
     })
     .then(res => res.json()
       .then(result => {
-          this.setState({joinSuccess: (result[0].partyCode === this.state.partyCode)});
-          console.log(result[0].partyCode);
+          this.setState({joinSuccess: (result.partyCode === this.state.partyCode)});
+          console.log(result.partyCode);
+          //indicate error when code is invalid
+          if (!this.state.joinSuccess) {
+            document.getElementById('invalid-code').style.display = "block";
+          }
+          console.log(result.size);
         }))
     .catch(err => console.log(err));
-
-    //indicate error when code is invalid
-    if (!this.state.joinSuccess) {
-      document.getElementById('invalid-code').style.display = "block";
-    }
   }
 
   render() {

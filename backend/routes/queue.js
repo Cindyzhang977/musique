@@ -21,8 +21,12 @@ router.route('/').get((req, res) => {
 // Queue GET Route partyCode retrivial (join-queue)
 router.route('/getParty/').post((req, res) => {
 	Queue.find({partyCode : req.body.partyCode})
-		.then(queue => {queue.size = queue.size + 1;
-						res.send(res.json(queue));})
+		.then(queue => {
+						queue[0].size = queue[0].size + 1;
+						queue[0].save()
+							.then(() => res.json(queue[0]))
+							.catch(err => res.status(400).json('Error ' + err));
+					})
 		.catch(err => res.status(400).json('Error ' + err));
 });
 
