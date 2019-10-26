@@ -26,7 +26,7 @@ class Create extends React.Component {
   /* creates a party that has the partyCode and an empty queue */
   createQueue() {
     // sends partyCode to backend
-    fetch('http://localhost:5000/queue/add', { //endpoint
+    fetch('http://localhost:5000/party/addParty', { //endpoint
       method: 'POST',
       body: JSON.stringify({"partyCode": this.state.partyCode}),
       headers: {

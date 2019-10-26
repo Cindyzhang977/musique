@@ -20,9 +20,9 @@ mongoose.connect(db, {useCreateIndex: true, useNewUrlParser: true, useUnifiedTop
 	.catch(err => console.log(err));
 
 // Use Routes
-const queues = require('./routes/queue');
+const parties = require('./routes/party');
 
-app.use('/queue', queues)
+app.use('/party', parties)
 
 // Ensure server is running
 app.listen(port, () => {

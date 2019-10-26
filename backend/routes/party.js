@@ -1,69 +1,70 @@
 const router = require('express').Router();
-let Queue = require('../models/queue.model');
+let Party = require('../models/party.model');
 
-// Queue GET Route
+// Party GET Route
 router.route('/').get((req, res) => {
-	Queue.find()
+	Party.find()
 		.sort({date: -1})
-		.then(queue => res.json(queue))
+		.then(party => res.json(party))
 		.catch(err => res.status(400).json('Error ' + err));
 });
 
-// Queue GET Route partyCode
+// Party GET Route partyCode
 // router.route('/latestCode/').get((req, res) => {
-// 	Queue.find()
+// 	Party.find()
 // 		.sort({time: -1})
 // 		.limit(1)
 // 		.then(queue => res.json(queue[0].partyCode))
 // 		.catch(err => res.status(400).json('Error ' + err));
 // });
 
-// Queue GET Route partyCode retrivial (join-queue)
+// Party GET Route partyCode retrivial (join-queue)
 router.route('/getParty/').post((req, res) => {
-	Queue.find({partyCode : req.body.partyCode})
-		.then(queue => {
-						queue[0].size = queue[0].size + 1;
-						queue[0].save()
-							.then(() => res.json(queue[0]))
+	Party.find({partyCode : req.body.partyCode})
+		.then(party => {
+						console.log("party" + party);
+						party[0].size = party[0].size + 1;
+						party[0].save()
+							.then(() => res.json(party[0]))
 							.catch(err => res.status(400).json('Error ' + err));
 					})
 		.catch(err => res.status(400).json('Error ' + err));
 });
 
 
-// Queue GET Route by ID
+// Party GET Route by ID
 router.route('/:id').get((req, res) => {
-	Queue.findById()
-		.then(queue => res.json(queue))
+	Party.findById()
+		.then(party => res.json(party))
 		.catch(err => res.status(400).json('Error ' + err));
 });
 
-// Queue ADD Route > return partyCode string (create-queue)
-router.route('/add').post((req, res) => {
-	const newQueue = new Queue({
+// Party ADD Route > return partyCode string (create-queue)
+router.route('/addParty').post((req, res) => {
+	const newParty = new Party({
 		'partyCode': req.body.partyCode,
 		'queue' : [],
 		'size': 1,
 	});
 
-	newQueue.save()
-		.then(queue => res.json(queue.partyCode))
+	newParty.save()
+		.then(party => res.json(party.partyCode))
 		.catch(err => res.status(400).json('Error ' + err));
 });
 
-// Queue UPDATE Route
+// Party UPDATE Route
 // router.route('/update/:id').post((req, res) => {
-// 	Queue.findById(req.params.id)
+// 	Party.findById(req.params.id)
 // 		.then(queue => {
 // 			queue.partyCode = req.body.partyCode;
 // 			queue.queue = req.body.queue;
 // 		})
 // });
 
-// Queue DELETE Route
+// Party DELETE Route
 // router.delete('/delete/:id', (req, res) => {
-// 	Queue.findByIdAndDelete(req.params.id)
-// 		.then(() => res.json('Queue deleted'))
+// 	Party.findByIdAndDelete(req.params.id)
+// 		.then(() => res.json('Party deleted'))
 // 		.catch(err => res.status(404).json({sucess: false}));
 // });
 

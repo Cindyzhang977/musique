@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const queueSchema = new Schema({
+const partySchema = new Schema({
 	 partyCode: {
 	 	type: String,
 	 	required: true,
@@ -24,6 +24,6 @@ const queueSchema = new Schema({
 	timestamps: true,
 });
 
-const Queue = mongoose.model('Queue', queueSchema);
+const Party = mongoose.model('Party', partySchema);
 
-module.exports = Queue;
+module.exports = Party;

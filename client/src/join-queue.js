@@ -12,6 +12,7 @@ class Join extends React.Component {
     this.state = {
       partyCode: '',
       joinSuccess: false,
+      size: '',
     }
   }
 
@@ -27,7 +28,7 @@ class Join extends React.Component {
 
   joinQueue() {
     //tries to get the party code entered from back end
-    fetch('http://localhost:5000/queue/getParty', { //endpoint
+    fetch('http://localhost:5000/party/getParty', { //endpoint
       method: 'POST',
       body: JSON.stringify({'partyCode': this.state.partyCode}),
       headers: {
@@ -38,12 +39,12 @@ class Join extends React.Component {
     .then(res => res.json()
       .then(result => {
           this.setState({joinSuccess: (result.partyCode === this.state.partyCode)});
-          console.log(result.partyCode);
+          this.setState({size: result.size});
+          console.log(result.size);
           //indicate error when code is invalid
           if (!this.state.joinSuccess) {
             document.getElementById('invalid-code').style.display = "block";
           }
-          console.log(result.size);
         }))
     .catch(err => console.log(err));
   }
@@ -52,7 +53,8 @@ class Join extends React.Component {
     if (this.state.joinSuccess) {
       return <Redirect to={{
             pathname: '/musique-queue',
-            state: { partyCode: this.state.partyCode }
+            state: { partyCode: this.state.partyCode,
+                     size : this.state.size}
         }}/>;
     }
 

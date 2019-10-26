@@ -8,3 +8,6 @@ https://reactjs.org/docs/animation.html
 
 CSS Box Shadow:
 https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow
+
+Styling React Input Fields:
+https://medium.com/@willhowardgb/building-a-beautiful-text-input-component-in-react-f85564cc7e86
