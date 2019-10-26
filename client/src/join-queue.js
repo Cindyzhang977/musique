@@ -41,6 +41,11 @@ class Join extends React.Component {
           console.log(result[0].partyCode);
         }))
     .catch(err => console.log(err));
+
+    //indicate error when code is invalid
+    if (!this.state.joinSuccess) {
+      document.getElementById('invalid-code').style.display = "block";
+    }
   }
 
   render() {
@@ -58,6 +63,7 @@ class Join extends React.Component {
           </div>
           <h2>Join Queue</h2>
           <input className='code-input' type='text' placeholder='Enter Code' onChange={this.onCodeChange.bind(this)} />
+          <div id='invalid-code'>* Invalid Code *</div>
           <div className='button accent-button' onClick={this.joinQueue}>Join!</div>
       </div>
     )
