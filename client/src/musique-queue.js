@@ -9,11 +9,17 @@ class MusiqueQueue extends React.Component {
   /* full MusiqueQueue page with ability to plus songs to queue */
 
   constructor(props) {
+    /* props: partyCode from Create */
     super(props);
     this.enqueue = this.enqueue.bind(this);
     this.state = {
       songAdded: '',
+      partyCode: '',
     }
+  }
+
+  componentDidMount() {
+    this.setState({partyCode: this.props.location.state.partyCode});
   }
 
   /* posts song to database */
@@ -32,15 +38,22 @@ class MusiqueQueue extends React.Component {
 
   render() {
     return (
-      <div className='queue-main-page'>
-          <div className='curr-song'> Current Song </div>
+      <div className='queue-page-container'>
+          <div className='queue-nav'>
+              <h2>musique</h2>
+              <div>PartyCode: {this.state.partyCode}</div>
+              <div className='button'>Log out</div>
+          </div>
+          <div className='queue-main-page'>
+              <div className='curr-song'> Current Song </div>
 
-          <Queue />
+              <Queue />
 
-          <div className='add-music'>
-              <input type='text' placeholder='queue musique' onChange={this.onInputChange.bind(this)}/>
-              <div className='plus-button' onClick={this.enqueue}>
-                  <FontAwesomeIcon icon={faPlus} className='plus-icon'/>
+              <div className='add-music'>
+                  <input type='text' placeholder='queue musique' onChange={this.onInputChange.bind(this)}/>
+                  <div className='plus-button' onClick={this.enqueue}>
+                      <FontAwesomeIcon icon={faPlus} className='plus-icon'/>
+                  </div>
               </div>
           </div>
       </div>
