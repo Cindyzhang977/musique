@@ -8,8 +8,10 @@ import './views/index.css';
 
 import Create from './create-queue.js';
 import Join from './join-queue.js';
+// import Routes from './routes.js';
 
 class Home extends React.Component {
+  /* home page with musique description */
   goToCreate() {
       this.props.history.push({
         pathname: '/create-queue'
@@ -51,7 +53,6 @@ class Home extends React.Component {
     )
   }
 }
-
 
 class App extends React.Component {
   /* class that is in charge of routing on home page to join or create queues */
