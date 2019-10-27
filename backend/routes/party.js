@@ -56,7 +56,7 @@ router.route('/addParty').post((req, res) => {
 	});
 
 	newParty.save()
-		.then(party => res.json(party.partyCode))
+		.then(party => {console.log(party); res.json(party.partyCode);})
 		.catch(err => res.status(400).json('Error ' + err));
 });
 
