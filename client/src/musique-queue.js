@@ -12,8 +12,6 @@ class MusiqueQueue extends React.Component {
   constructor(props) {
     /* props: <id> from Create/Join */
     super(props);
-    console.log(props);
-    console.log("in const of mq");
     this.enqueue = this.enqueue.bind(this);
     this.state = {
       songAdded: '',
@@ -21,23 +19,45 @@ class MusiqueQueue extends React.Component {
       size: '',
       queue: [],
       goHome: false,
+      partyID:'',
     }
   }
 
   goHome() {
+      var currSize = 0;
+      //return the most current size of queue
+      fetch('http://localhost:5000/party/' + this.state.partyID, { //endpoint
+        method: 'GET',
+      })
+      .then(res => res.json()
+        .then(result => {
+          fetch('http://localhost:5000/party/update/' + this.state.partyID, {
+            method: 'POST',
+            body: JSON.stringify({"partyCode": this.state.partyCode,
+                                  "size": result.size}),
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+          })
+          .catch(err => console.log(err));
+        }))
+      .catch(err => console.log(err));
+
       this.setState({goHome: true});
   }
 
   componentDidMount() {
     //fetch for PartyCode and size and queue
-    fetch('http://localhost:5000/party/' + this.props.id, { //endpoint
+    fetch('http://localhost:5000/party/' + this.props.location.state.partyID, { //endpoint
       method: 'GET',
     })
     .then(res => res.json()
       .then(result => {
         this.setState({partyCode: result.partyCode,
                       size: result.size,
-                      queue: result.queue});
+                      queue: result.queue,
+                      partyID: this.props.location.state.partyID});
       })
     )
     .catch(err => console.log(err));

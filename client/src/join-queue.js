@@ -52,12 +52,11 @@ class Join extends React.Component {
 
   render() {
     if (this.state.joinSuccess) {
-      return <MusiqueQueue id={this.state.partyID} />;
-      // return <Redirect to={{
-      //       pathname: '/musique-queue',
-      //       state: { partyCode: this.state.partyCode,
-      //                size : this.state.size}
-      //   }}/>;
+      // return <MusiqueQueue id={this.state.partyID} />;
+      return <Redirect to={{
+            pathname: '/musique-queue',
+            state: {partyID: this.state.partyID}
+        }}/>;
     }
 
     return (

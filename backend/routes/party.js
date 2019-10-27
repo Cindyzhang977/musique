@@ -9,20 +9,10 @@ router.route('/').get((req, res) => {
 		.catch(err => res.status(400).json('Error ' + err));
 });
 
-// Party GET Route partyCode
-// router.route('/latestCode/').get((req, res) => {
-// 	Party.find()
-// 		.sort({time: -1})
-// 		.limit(1)
-// 		.then(queue => res.json(queue[0].partyCode))
-// 		.catch(err => res.status(400).json('Error ' + err));
-// });
-
 // Party GET Route partyCode retrivial (join-queue)
 router.route('/getParty/').post((req, res) => {
 	Party.find({partyCode : req.body.partyCode})
 		.then(party => {
-						console.log("party" + party);
 						party[0].size = party[0].size + 1;
 						party[0].save()
 							.then(() => res.json(party[0]))
@@ -30,15 +20,6 @@ router.route('/getParty/').post((req, res) => {
 					})
 		.catch(err => res.status(400).json('Error ' + err));
 });
-
-// party GET > return number of users logged in
-// router.route('/getSize/:id').get((req, res) => {
-// 	console.log(req.params.id);
-// 	Party.find({partyCode: req.params.id})
-// 		.then(party => res.json(party))
-// 		.catch(err => res.status(400).json('Error ' + err));
-// });
-
 
 // Party GET Route by ID
 router.route('/:id').get((req, res) => {
@@ -75,13 +56,15 @@ router.route('/addSong').post((req, res) => {
 });
 
 // Party UPDATE Route
-// router.route('/update/:id').post((req, res) => {
-// 	Party.findById(req.params.id)
-// 		.then(queue => {
-// 			queue.partyCode = req.body.partyCode;
-// 			queue.queue = req.body.queue;
-// 		})
-// });
+router.route('/update/:id').post((req, res) => {
+	Party.findById(req.params.id)
+		.then(party => {
+			party.size = req.body.size - 1;
+			party.save()
+				.catch(err => console.log(err));
+		})
+		.catch(err => console.log(err));
+});
 
 // Party DELETE Route
 // router.delete('/delete/:id', (req, res) => {
