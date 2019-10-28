@@ -1,7 +1,7 @@
 @import 'config.css';
 
 /* TRANSITIONS OLD*/
-/* .transition-item {
+.transition-item {
     position: fixed;
     top: 0;
     right: 0;
@@ -52,7 +52,7 @@
     opacity: 0;
     transform: translate3d(-100%, 0, 0);
 }
- */
+
 
 /* TRANSITIONS NEW */
 
@@ -71,13 +71,13 @@ h1 {
   display: flex;
 }
 
-/* .home-description, .home-tab {
+.home-description, .create-join-tab {
   padding: 40px;
-} */
+}
 
 .home-description {
   background-color: var(--salmon);
-  flex: 2;
+  flex: 3.5;
 }
 
 .home-description > p {
@@ -85,13 +85,10 @@ h1 {
 }
 
 .create-join-tab {
-  padding-top: 25vh;
-}
-
-.home-tab {
   background-color: var(--off-white);
   flex: 1;
   text-align: center;
+  padding-top: 25vh;
 }
 
 .button {
@@ -166,7 +163,6 @@ h2 {
 .create, .join {
   text-align: center;
   padding: 50px;
-  flex: 1;
 }
 
 .create {
@@ -181,9 +177,8 @@ h2 {
 
 .create>.button, .join>.button {
   position: relative;
-  left: 50%;
+  left:72%;
   top: 55vh;
-  width: 150px;
 }
 
 #invalid-code {

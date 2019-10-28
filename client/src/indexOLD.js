@@ -13,22 +13,16 @@ import MusiqueQueue from './musique-queue.js';
 
 class Home extends React.Component {
   /* home page with musique description */
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      tabOpen: <CreateJoinTab changeTabOpen={this.changeTabOpen.bind(this)} />,
-    }
+  goToCreate() {
+      this.props.history.push({
+        pathname: '/create-queue'
+      });
   }
 
-  changeTabOpen(newTab) {
-    if (newTab === 'join') {
-      this.setState({tabOpen: <Join changeTabOpen={this.changeTabOpen.bind(this)} />});
-    } else if (newTab === 'create') {
-      this.setState({tabOpen: <Create changeTabOpen={this.changeTabOpen.bind(this)} />});
-    } else if (newTab === 'home') {
-      this.setState({tabOpen: <CreateJoinTab changeTabOpen={this.changeTabOpen.bind(this)} />});
-    }
+  goToJoin() {
+      this.props.history.push({
+        pathname: '/join-queue'
+      });
   }
 
   render() {
@@ -44,20 +38,18 @@ class Home extends React.Component {
               remaining essentially unchanged.
               </p>
           </div>
-          <div className='home-tab'>
-              {this.state.tabOpen}
+          <div className='create-join-tab'>
+              <div onClick={this.goToCreate.bind(this)} className='button'>Create</div>
+              <p className='button-description'>
+              Enter a code that you create and pass that code
+              along to others that will share the queue.
+              </p>
+              <div onClick={this.goToJoin.bind(this)} className='button accent-button'>Join</div>
+              <p className='button-description'>
+              Enter a code form the host, and add music to the
+              queue so that there is never awkward silence.
+              </p>
           </div>
-      </div>
-    )
-  }
-}
-
-class CreateJoinTab extends React.Component {
-  render() {
-    return (
-      <div className='create-join-tab'>
-          <div onClick={() => {this.props.changeTabOpen('create')}} className='button'>Create</div>
-          <div onClick={() => {this.props.changeTabOpen('join')}} className='button accent-button'>Join</div>
       </div>
     )
   }
@@ -73,8 +65,8 @@ class App extends React.Component {
               <PageTransition timeout={500}>
                   <Switch location={location}>
                       <Route exact path='/' component={Home} />
-                      // <Route path='/create-queue' component={Create} />
-                      // <Route path='/join-queue' component={Join} />
+                      <Route path='/create-queue' component={Create} />
+                      <Route path='/join-queue' component={Join} />
                       <Route path='/musique-queue' component={MusiqueQueue} />
                   </Switch>
               </PageTransition>

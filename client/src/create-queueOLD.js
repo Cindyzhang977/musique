@@ -19,6 +19,12 @@ class Create extends React.Component {
     }
   }
 
+  goHome() {
+      this.props.history.push({
+        pathname: '/'
+      });
+  }
+
   /* creates a party that has the partyCode and an empty queue */
   createQueue() {
     // sends partyCode to backend
@@ -70,7 +76,7 @@ class Create extends React.Component {
     }
     return (
       <div className='create transition-item'>
-          <div className='back' onClick={() => {this.props.changeTabOpen('home')}}>
+          <div className='back' onClick={this.goHome.bind(this)}>
               <FontAwesomeIcon icon={faArrowLeft} />
           </div>
           <h2>Create Queue</h2>

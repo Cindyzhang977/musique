@@ -18,6 +18,12 @@ class Join extends React.Component {
     }
   }
 
+  goHome() {
+      this.props.history.push({
+        pathname: '/'
+      });
+  }
+
   onCodeChange(e) {
     this.setState({partyCode: e.target.value});
   }
@@ -55,7 +61,7 @@ class Join extends React.Component {
 
     return (
       <div className='join transition-item'>
-          <div className='back' onClick={() => {this.props.changeTabOpen('home')}}>
+          <div className='back' onClick={this.goHome.bind(this)}>
               <FontAwesomeIcon icon={faArrowLeft} />
           </div>
           <h2>Join Queue</h2>
