@@ -10,7 +10,7 @@
 
 .queue-main-page {
   text-align: center;
-  margin: 5% 20% 5% 20%;
+  margin: 2% 20%;
 }
 
 .queue-page-container {
@@ -29,13 +29,12 @@
   min-width: 90px;
 }
 
-/* add MUSIC */
+/* ADD MUSIC */
 
 .add-music {
   display: flex;
   justify-content: space-between;
   margin: auto;
-  margin-bottom: 50px;
   /* border: 1px solid var(--light-grey);
   padding: 10px 25px;
   border-radius: 4px;
@@ -76,12 +75,12 @@
 
 .queue {
   border: 1px solid var(--pink);
-  padding: 10px 25px;
+  padding: 10px 15px;
   border-radius: 4px;
   background-color: #fcfcfc;
   box-shadow: 0 1px 3px 0 var(--grey);
-  margin: 5% auto;
-  height: 50vh;
+  margin: 3% auto;
+  height: 60vh;
   overflow-y: scroll;
   scrollbar-color: var(--salmon) var(--off-white);
   scrollbar-width: thin;
@@ -104,10 +103,14 @@
 /* CURRENT SONG PLAYING */
 .curr-song {
   border: 1px solid var(--pink);
-  padding: 10px 25px;
+  /* padding: 10px; */
+  height: 6vh;
   border-radius: 2px;
   background-color: #fcfcfc;
   box-shadow: 0 1px 4px 0 var(--grey);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* QUEUED SONG */
@@ -121,5 +124,5 @@
   align-items: center;
 
   background: linear-gradient(90deg, var(--salmon) 10%, var(--pink) 100%);
+  color: var(--dark-grey);
 }
-
