@@ -7,3 +7,13 @@ Idea Implementation
 Notes
 - npm install express mongoose body-parser
 - npm install --save -g nodemon (node.js server)
+
+
+Todo
+- Implement if 0 members in party = delete party from database
+- Aesthetic up that queue CSS
+- Simulate a song finishing and remove from queue
+- Refresh automatically
+- Transitions
+- Connect spotify web API
+
