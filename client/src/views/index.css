@@ -71,10 +71,6 @@ h1 {
   display: flex;
 }
 
-/* .home-description, .home-tab {
-  padding: 40px;
-} */
-
 .home-description {
   background-color: var(--salmon);
   flex: 2;
@@ -86,6 +82,8 @@ h1 {
 
 .create-join-tab {
   padding-top: 25vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .home-tab {
@@ -120,7 +118,7 @@ h1 {
 }
 
 .create-join-tab > .button {
-  margin: 30px auto 30px auto;
+  margin: 4% auto;
 }
 
 .button-description {

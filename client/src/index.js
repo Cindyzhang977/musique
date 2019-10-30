@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Route, Link, Switch, BrowserRouter as Router, Redirect} from 'react-router-dom';
-// import {TransitionGroup, CSSTransition} from 'react-transition-group';
+import {TransitionGroup, CSSTransition} from 'react-transition-group';
 import PageTransition from 'react-router-page-transition';
 
 import './views/index.css';
@@ -13,23 +13,6 @@ import MusiqueQueue from './musique-queue.js';
 
 class Home extends React.Component {
   /* home page with musique description */
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      tabOpen: <CreateJoinTab changeTabOpen={this.changeTabOpen.bind(this)} />,
-    }
-  }
-
-  changeTabOpen(newTab) {
-    if (newTab === 'join') {
-      this.setState({tabOpen: <Join changeTabOpen={this.changeTabOpen.bind(this)} />});
-    } else if (newTab === 'create') {
-      this.setState({tabOpen: <Create changeTabOpen={this.changeTabOpen.bind(this)} />});
-    } else if (newTab === 'home') {
-      this.setState({tabOpen: <CreateJoinTab changeTabOpen={this.changeTabOpen.bind(this)} />});
-    }
-  }
 
   render() {
     return (
@@ -45,7 +28,20 @@ class Home extends React.Component {
               </p>
           </div>
           <div className='home-tab'>
-              {this.state.tabOpen}
+          <Router>
+              <TransitionGroup>
+                  <CSSTransition
+                    key={window.location.key}
+                    timeout={{ enter: 300, exit: 300 }}
+                    classNames={'fade'}>
+                        <Switch location={window.location}>
+                            <Route exact path="/" component={CreateJoinTab} />
+                            <Route path="/create-queue" component={Create} />
+                            <Route path="/join-queue" component={Join} />
+                        </Switch>
+                  </CSSTransition>
+              </TransitionGroup>
+          </Router>
           </div>
       </div>
     )
@@ -53,11 +49,13 @@ class Home extends React.Component {
 }
 
 class CreateJoinTab extends React.Component {
+  /* side tab that has the create and join buttons, rendered with teh home page by default */
+
   render() {
     return (
       <div className='create-join-tab'>
-          <div onClick={() => {this.props.changeTabOpen('create')}} className='button'>Create</div>
-          <div onClick={() => {this.props.changeTabOpen('join')}} className='button accent-button'>Join</div>
+          <Link to='/create-queue' className='button'>Create</Link>
+          <Link to='/join-queue' className='button accent-button'>Join</Link>
       </div>
     )
   }
@@ -65,6 +63,7 @@ class CreateJoinTab extends React.Component {
 
 class App extends React.Component {
   /* class that is in charge of routing on home page to join or create queues */
+  
   render() {
     return (
       <Router>

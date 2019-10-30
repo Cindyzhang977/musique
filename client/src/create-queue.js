@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
@@ -70,9 +70,9 @@ class Create extends React.Component {
     }
     return (
       <div className='create transition-item'>
-          <div className='back' onClick={() => {this.props.changeTabOpen('home')}}>
+          <Link to='/' className='back'>
               <FontAwesomeIcon icon={faArrowLeft} />
-          </div>
+          </Link>
           <h2>Create Queue</h2>
           <input type='text' className='code-input' placeholder='Create Join Code' onChange={this.onCodeChange.bind(this)}/>
           <div className='button accent-button' onClick={this.createQueue}>Create!</div>

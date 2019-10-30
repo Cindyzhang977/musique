@@ -4,7 +4,7 @@
 //
 // import './views/index.css';
 //
-// import Home from './index.js';
+// import CreateJoinTab from './index.js';
 // import Create from './create-queue.js';
 // import Join from './join-queue.js';
 //
@@ -17,7 +17,7 @@
 //           timeout={{ enter: 300, exit: 300 }}
 //           classNames={'fade'}>
 //               <Switch location={location}>
-//                   <Route exact path="/" component={Home} />
+//                   <Route exact path="/" component={CreateJoinTab} />
 //                   <Route path="/create-queue" component={Create} />
 //                   <Route path="/join-queue" component={Join} />
 //               </Switch>
