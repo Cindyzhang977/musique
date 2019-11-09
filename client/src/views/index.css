@@ -1,5 +1,34 @@
 @import 'config.css';
 
+/* .fade-enter {
+  opacity: 0.01;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit.fade-exit-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
+
+div.transition-group {
+  position: relative;
+}
+
+section.route-section {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+} */
+
 /* TRANSITIONS OLD*/
 /* .transition-item {
     position: fixed;
@@ -53,10 +82,6 @@
     transform: translate3d(-100%, 0, 0);
 }
  */
-
-/* TRANSITIONS NEW */
-
-
 
 /* Home Page */
 h1 {
@@ -135,13 +160,14 @@ h1 {
 
 h2 {
   color: var(--orange);
+  margin-top: 20%;
 }
 
 .code-input {
-  width: 50%;
+  width: 90%;
   height: 6vh;
   position: relative;
-  top: 90px;
+  top: 12%;
   padding: 17px;
   border-radius: 5px;
   border: 2px solid var(--salmon);
@@ -152,7 +178,6 @@ h2 {
   text-decoration: underline;
   position: relative;
   right: 46%;
-  margin-bottom: 15px;
   font-size: 28px;
 }
 
@@ -163,7 +188,7 @@ h2 {
 
 .create, .join {
   text-align: center;
-  padding: 50px;
+  padding: 10%;
   flex: 1;
 }
 
@@ -180,7 +205,7 @@ h2 {
 .create>.button, .join>.button {
   position: relative;
   left: 50%;
-  top: 55vh;
+  top: 40vh;
   width: 150px;
 }
 

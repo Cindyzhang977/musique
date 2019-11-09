@@ -13,8 +13,25 @@ import MusiqueQueue from './musique-queue.js';
 
 class Home extends React.Component {
   /* home page with musique description */
+  constructor(props) {
+    super(props);
+    this.state = {
+      tabOpen: <CreateJoinTab changeTabOpen={this.changeTabOpen.bind(this)} />,
+    }
+  }
+
+  changeTabOpen(newTab) {
+    if (newTab === 'join') {
+      this.setState({tabOpen: <Join changeTabOpen={this.changeTabOpen.bind(this)} />});
+    } else if (newTab === 'create') {
+      this.setState({tabOpen: <Create changeTabOpen={this.changeTabOpen.bind(this)} />});
+    } else if (newTab === 'home') {
+      this.setState({tabOpen: <CreateJoinTab changeTabOpen={this.changeTabOpen.bind(this)} />});
+    }
+  }
 
   render() {
+    /* BUG - cannot referesh page */
     return (
       <div className='home transition-item'>
           <div className='home-description'>
@@ -28,20 +45,7 @@ class Home extends React.Component {
               </p>
           </div>
           <div className='home-tab'>
-          <Router>
-              <TransitionGroup>
-                  <CSSTransition
-                    key={window.location.key}
-                    timeout={{ enter: 300, exit: 300 }}
-                    classNames={'fade'}>
-                        <Switch location={window.location}>
-                            <Route exact path="/" component={CreateJoinTab} />
-                            <Route path="/create-queue" component={Create} />
-                            <Route path="/join-queue" component={Join} />
-                        </Switch>
-                  </CSSTransition>
-              </TransitionGroup>
-          </Router>
+            {this.state.tabOpen}
           </div>
       </div>
     )
@@ -54,8 +58,8 @@ class CreateJoinTab extends React.Component {
   render() {
     return (
       <div className='create-join-tab'>
-          <Link to='/create-queue' className='button'>Create</Link>
-          <Link to='/join-queue' className='button accent-button'>Join</Link>
+          <div onClick={() => {this.props.changeTabOpen('create')}} className='button'>Create</div>
+          <div onClick={() => {this.props.changeTabOpen('join')}} className='button accent-button'>Join</div>
       </div>
     )
   }
@@ -63,7 +67,7 @@ class CreateJoinTab extends React.Component {
 
 class App extends React.Component {
   /* class that is in charge of routing on home page to join or create queues */
-  
+
   render() {
     return (
       <Router>

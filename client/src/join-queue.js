@@ -55,9 +55,9 @@ class Join extends React.Component {
 
     return (
       <div className='join transition-item'>
-          <Link to='/' className='back'>
+          <div className='back' onClick={() => {this.props.changeTabOpen('home')}}>
               <FontAwesomeIcon icon={faArrowLeft} />
-          </Link>
+          </div>
           <h2>Join Queue</h2>
           <input className='code-input' type='text' placeholder='Enter Code' onChange={this.onCodeChange.bind(this)} />
           <div id='invalid-code'>* Invalid Code *</div>

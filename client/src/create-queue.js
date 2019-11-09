@@ -70,9 +70,9 @@ class Create extends React.Component {
     }
     return (
       <div className='create transition-item'>
-          <Link to='/' className='back'>
+          <div className='back' onClick={() => {this.props.changeTabOpen('home')}}>
               <FontAwesomeIcon icon={faArrowLeft} />
-          </Link>
+          </div>
           <h2>Create Queue</h2>
           <input type='text' className='code-input' placeholder='Create Join Code' onChange={this.onCodeChange.bind(this)}/>
           <div className='button accent-button' onClick={this.createQueue}>Create!</div>
