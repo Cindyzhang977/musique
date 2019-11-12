@@ -11,16 +11,29 @@ class Create extends React.Component {
 
   constructor(props) {
     super(props);
+    const params = this.getHashParams();
     this.createQueue = this.createQueue.bind(this);
     this.state = {
       partyCode: '',
       queueCreated: false,
       partyID: '',
+      loggedIn: params.access_token ? true : false,
     }
+  }
+
+  getHashParams() {
+    var hashParams = {};
+    var e, r = /([^&;=]+)=?([^&;]*)/g,
+        q = window.location.hash.substring(1);
+    while ( e = r.exec(q)) {
+       hashParams[e[1]] = decodeURIComponent(e[2]);
+    }
+    return hashParams;
   }
 
   /* creates a party that has the partyCode and an empty queue */
   createQueue() {
+    // test if
     // sends partyCode to backend
     fetch('http://localhost:5000/party/addParty', {
       method: 'POST',
@@ -62,7 +75,9 @@ class Create extends React.Component {
   // }
 
   render() {
-    if (this.state.queueCreated) {
+    if (this.state.loggedIn && this.state.queueCreated) {
+      console.log("Party ID passed");
+      console.log(this.state.partyID);
       return <Redirect to={{
             pathname: '/musique-queue',
             state: {partyID: this.state.partyID}

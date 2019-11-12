@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import {Route, Link, Switch, BrowserRouter as Router, Redirect} from 'react-router-dom';
 import {TransitionGroup, CSSTransition} from 'react-transition-group';
 import PageTransition from 'react-router-page-transition';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 import './views/index.css';
 
@@ -15,9 +17,22 @@ class Home extends React.Component {
   /* home page with musique description */
   constructor(props) {
     super(props);
+    const spotifyParams = this.getHashParams();
     this.state = {
-      tabOpen: <CreateJoinTab changeTabOpen={this.changeTabOpen.bind(this)} />,
+      tabOpen: spotifyParams.access_token ? <Create changeTabOpen={this.changeTabOpen.bind(this)} /> : 
+      <CreateJoinTab changeTabOpen={this.changeTabOpen.bind(this)} />,
+      //<CreateJoinTab changeTabOpen={this.changeTabOpen.bind(this)} /> : <Create changeTabOpen={this.changeTabOpen.bind(this)} />}),
     }
+  }
+
+  getHashParams() {
+    var hashParams = {};
+    var e, r = /([^&;=]+)=?([^&;]*)/g,
+        q = window.location.hash.substring(1);
+    while ( e = r.exec(q)) {
+       hashParams[e[1]] = decodeURIComponent(e[2]);
+    }
+    return hashParams;
   }
 
   changeTabOpen(newTab) {
@@ -27,6 +42,8 @@ class Home extends React.Component {
       this.setState({tabOpen: <Create changeTabOpen={this.changeTabOpen.bind(this)} />});
     } else if (newTab === 'home') {
       this.setState({tabOpen: <CreateJoinTab changeTabOpen={this.changeTabOpen.bind(this)} />});
+    } else if (newTab === 'login') {
+      this.setState({tabOpen: <Login changeTabOpen={this.changeTabOpen.bind(this)} />});
     }
   }
 
@@ -58,8 +75,23 @@ class CreateJoinTab extends React.Component {
   render() {
     return (
       <div className='create-join-tab'>
-          <div onClick={() => {this.props.changeTabOpen('create')}} className='button'>Create</div>
+          <div onClick={() => {this.props.changeTabOpen('login')}} className='button'>Create</div>
           <div onClick={() => {this.props.changeTabOpen('join')}} className='button accent-button'>Join</div>
+      </div>
+    )
+  }
+}
+
+class Login extends React.Component {
+  /* side tab that has the create and join buttons, rendered with teh home page by default */
+  render() {
+    return (
+      <div className='login-tab'>
+          <div className='back' onClick={() => {this.props.changeTabOpen('home')}}>
+              <FontAwesomeIcon icon={faArrowLeft} />
+          </div>
+          
+          <div onClick={() => {window.location.href = 'http://localhost:5000/spotify/login'}} className='button'>Login</div>
       </div>
     )
   }

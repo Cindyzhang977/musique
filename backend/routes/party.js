@@ -9,7 +9,7 @@ router.route('/').get((req, res) => {
 		.catch(err => res.status(400).json('Error ' + err));
 });
 
-// Party GET Route partyCode retrivial (join-queue)
+// Party POST Route partyCode retrivial (join-queue)
 router.route('/getParty/').post((req, res) => {
 	Party.find({partyCode : req.body.partyCode})
 		.then(party => {

@@ -1,7 +1,7 @@
-@import 'config.css';
+/*@import 'config.css';*/
 
 /* TRANSITIONS OLD*/
-.transition-item {
+./*transition-item {
     position: fixed;
     top: 0;
     right: 0;
@@ -51,7 +51,7 @@
 .home.transition-leave.transition-leave-active {
     opacity: 0;
     transform: translate3d(-100%, 0, 0);
-}
+}*/
 
 
 /* TRANSITIONS NEW */
@@ -59,7 +59,7 @@
 
 
 /* Home Page */
-h1 {
+/*h1 {
     margin: 40px;
     text-align: center;
     font-size: 60px;
@@ -127,12 +127,12 @@ h1 {
   padding-left: 20px;
   padding-right: 20px;
   display: none;
-}
+}*/
 
 
 /* Create and Join Queue */
 
-h2 {
+/*h2 {
   color: var(--orange);
 }
 
@@ -185,3 +185,4 @@ h2 {
   display: none;
   color: red;
 }
+*/

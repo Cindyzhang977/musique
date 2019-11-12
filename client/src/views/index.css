@@ -105,7 +105,7 @@ h1 {
   padding: 30px 50px 30px 50px;
 }
 
-.create-join-tab {
+.create-join-tab, .login-tab {
   padding-top: 25vh;
   display: flex;
   flex-direction: column;
@@ -142,7 +142,7 @@ h1 {
   color: var(--off-white);
 }
 
-.create-join-tab > .button {
+.create-join-tab > .button, .login-tab > .button {
   margin: 4% auto;
 }
 
@@ -160,15 +160,15 @@ h1 {
 
 h2 {
   color: var(--orange);
-  margin-top: 20%;
 }
 
 .code-input {
   width: 90%;
-  height: 6vh;
+  height: 30px;
   position: relative;
   top: 12%;
   padding: 17px;
+  margin-top: 30px;
   border-radius: 5px;
   border: 2px solid var(--salmon);
 }
@@ -200,6 +200,10 @@ h2 {
 .join {
   min-height: 100vh;
   background-color: var(--pink);
+}
+
+.create>h2, .join>h2 {
+  margin-top: 20%;
 }
 
 .create>.button, .join>.button {
